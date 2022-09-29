@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VUE局部组件</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 03使用组件 (和html一样直接调用即可)-->
+        <child></child>
+        <child></child>
+    </div>
+
+    <script>
+        // 01.定义一个vue组件
+        const child={
+            // template 模板 固定且内部只能有一个根标签；相当于el标签同样也有method等属性
+            template:`<div><button v-on:click="num++">{{num}}</button>这是一个名为child的组件</div>`,
+            // data当数据用
+            data(){
+                return {num:1};
+            },
+            // methods: {},
+        }
+
+        new Vue({
+            el:'#box',
+            // 02.注册组件
+            components:{
+                // child:child
+                child,
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue局部变量</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <child></child>
+    </div>
+
+    <script>
+        let child={
+            template:`<div>
+                <button v-on:click="num++">+</button>
+                我是一个局部组件-值是{{num}}</div>`,
+            data(){
+                return {num:2}
+            }
+        }
+        new Vue({
+            el:'#box',
+            components:{
+                child,
+            }
+        })
+    </script>
+</body>
+</html>

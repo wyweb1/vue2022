@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+    <script src="js/jquery-2.2.4.min.js"></script>
+</head>
+<body>
+    <!-- vue或vscode跨域问题 -->
+    <button>点击</button>
+    <div id="app"></div>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                // $('#app').load("vue-ajaxBeing.html")
+                console.log("hhh");
+                $.get("a.txt",function(res,status,xhr){
+                    console.log(res,status);
+                    $("#app").html(res);
+                })
+            })
+        })
+    </script>
+</body>
+</html>

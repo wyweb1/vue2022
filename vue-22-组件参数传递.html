@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue如何向子组件传参</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <child :cuser="user"></child>
+        <child></child>
+        
+    </div>
+    <script>
+        // 定义组件
+        const child = {
+            template:`
+            <div>
+                <button v-on:click="num++">{{num}}</button>
+                <span>这是一个child组件，大家好我是{{cuser.name}}，我{{cuser.age}}了</span>
+            </div>`,
+            data(){
+                return {num:1};
+            },
+            // 接收从使用的child组件里传来的参数
+            // props:['cuser'],
+
+            // 向子组件传参的默认值
+            props:{
+                cuser:{
+                    type:Object,
+                    default:{
+                        name:'熊猫',
+                        age:18
+                    }
+                }
+            }
+        }
+
+        new Vue({
+            el:'#box',
+            data:{
+                user:{
+                    name:'柚子',
+                    age:18,
+                }
+            },
+            // 注册组件
+            components:{
+                child,
+            }
+        })
+    </script>
+</body>
+</html>

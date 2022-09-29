@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch 监听数据变化</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 作用；当监听的数据变化时调用 -->
+      <h1>watch 监听</h1>
+      <p>时时监听一个数据的变化</p>
+      <p>默认监听简单的数据类型</p>
+      <button @click="num++">{{num}}</button>
+        <p><input type="text" v-model="num"></p>
+
+
+        <p>监听复杂数据类型 obj</p>
+        <button @click="num2.val++">{{num2.val}}</button>
+        <p><input type="text" v-model="num2.val"></p>
+</div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                num:1,
+                num2:{val:1}
+            },
+            watch:{
+                'num':function(nval,oval){
+                    // nval新的num数据 oval旧num数据
+                    console.log(`num数据由${oval}变成${nval}`)
+                },
+                'num2':{
+                    // handler 处理
+                    handler:function(nval,oval){
+                        //有bug 两个边量传过来的值一样没变化
+                        console.log(`num2.val数据由${oval.val}变成${nval.val}`);
+                    },
+                    deep:true //深层 次监听
+                },
+            }
+            
+        })
+    </script>
+</body>
+</html>

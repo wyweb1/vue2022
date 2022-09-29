@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性渲染</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 可以绑定任意属性 -->
+      <h1 v-bind:title='mytitle'>属性渲染</h1>
+      <h1 :title='mytitle'>绑定属性简写</h1>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+           mytitle:'我是title值'
+        }
+       
+    })
+</script>
+</html>

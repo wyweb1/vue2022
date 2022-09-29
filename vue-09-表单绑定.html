@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单绑定</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>表单绑定-文本框</h1>
+        <!-- v-model绑定到value -->
+        <input type="text" v-model="msg" />
+        <p>{{msg}}</p>
+
+        <h1>步进器</h1>
+        <button @click="num--;num<1?num=1:''">-</button><input readonly type="text" v-model="num"><button @click="num++">+</button>
+        
+        <h1>多选框绑定</h1>
+        <!-- 单个多选框/复选框 v-model绑定到布尔值
+         多个复选框v-model绑定到同一数组 -->
+        <input type="checkbox"  v-model="isLog">{{isLog}}
+            <p>多个复选框绑定</p>
+        <input type="checkbox" value="juice" id="juice" v-model="checkboxName" > <label for="juice">juice</label>
+        <input type="checkbox" value="apple" id="apple" v-model="checkboxName"><label for="apple">apple</label>
+        <input type="checkbox" value="origi" id="origi" v-model="checkboxName"><label for="origi">origi</label>
+        <input type="checkbox" value="xoaoming" id="xoaoming" v-model="checkboxName"><label for="xoaoming">xoaoming</label>
+        <p>{{checkboxName}}</p>
+
+        <h1>单选框绑定</h1>
+        <!-- v-model绑定到所选的value值 -->
+        <input type="radio" name="group" value="A" v-model="pick"/>
+        <input type="radio" name="group" value="B" v-model="pick"/>
+        <input type="radio" name="group" value="C" v-model="pick"/>
+        <p>{{pick}}</p>
+
+
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'i love you',
+                num:1,
+                isLog:true,
+                checkboxName:[],
+                pick:'A',
+            }
+        })
+    </script>
+</body>
+</html>

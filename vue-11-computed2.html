@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>计算 computed</h1>
+        <!-- computed 作用:从现有的数据计算出一个新的数据 -->
+        <p>从现有数据获得新的数据</p>
+        <p>显示分数超过60的学生</p>
+        <div v-for="item in jige">姓名：{{item.name}}分数：{{item.score}}</div>
+   <!-- js 通过filter 过滤来筛选数组 返回的是真该数组保留，假不保留 -->
+   <!-- computed 里面的jige可以当data用 -->
+
+    
+</div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                list:[
+                    {name:'uu',score:80},
+                    {name:'qq',score:60},
+                    {name:'aa',score:71},
+                    {name:'zz',score:46},
+                ],
+                msg:'我好中意你',
+            },
+            computed:{
+                // 好像不带双引号也行
+                // jige2:function(){},
+                "jige":function(){
+                    // this 当前实例vue
+                    // this.list 当前vue data里面的list的数据
+                    
+                    return this.list.filter(item=>item.score>60);
+                //    return this.list.filter(function(item){
+                //         return item.score>60;
+                //     })
+                },
+
+            }
+        })
+    </script>
+</body>
+</html>

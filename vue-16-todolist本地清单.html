@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODOlist清单</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>清单</h1>
+        <input type="text" v-model="current" v-on:keyup.enter="addItem">
+        <div v-for="(item,index) in list" v-bind:key="index">
+            {{item}} 
+            <button v-on:click="deleteItem(index)">删除</button>
+        </div>
+
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                list:["x学前端","html","css","es6"],
+                current:'',
+            },
+            methods: {
+                deleteItem(index){
+                    this.list.splice(index,1);
+                },
+                addItem(){
+                    this.list.unshift(this.current);
+                    this.current="";
+                }
+            },
+            // 监听简单数据变化
+            watch:{
+                list:{
+                    handler:function(nval,oval){
+                        localStorage.setItem("list2021",JSON.stringify(this.list));
+                    },
+                    deep:true
+                }
+            },
+            // 当vue加载成功时 从localStorage 取出数据并赋值给list
+            created(){
+                var str = localStorage.getItem("list2021");
+                this.list = JSON.parse(str);
+                // console.log(str,"str");
+                // console.log(this.list,"list")
+            },
+
+        })
+    </script>
+</body>
+</html>

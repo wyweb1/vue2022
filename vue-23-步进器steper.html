@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>步进器steper</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <steper></steper>
+    </div>
+    
+    <script>
+        var steper = {
+            template:`
+            <span>
+            <button v-on:click="n--">-</button>
+            <input type="text" v-model="n">
+            <button v-on:click="n++">+</button>
+            </span>
+            `,
+            data(){
+                return {n:1}
+            }
+
+        }
+        new Vue({
+            el:'#box',
+            components:{
+                steper,
+            }
+        })
+    </script>
+</body>
+</html>

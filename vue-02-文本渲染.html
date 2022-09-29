@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本渲染</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      
+        <!-- {{msg}} -->
+        <h1>{{msg}}</h1>
+        {{msg2}}
+        <div v-html="msg2"></div>
+        <div v-text="msg2"></div>
+
+        <!-- 简单的javascript运算 -->
+        <div>{{9*9-5}}</div>
+        <div>{{7>9?'大':'小'}}</div>
+    </div>
+    
+    <script>
+        new Vue({
+            // el vue 代码模板的区域
+            el:'#app',
+            //data vue 里面的数据
+            data:{
+                msg:'你好vue.js',
+                //不识别标签 所以要用文本渲染属性
+                msg2:'<h4>你好我有标签</h4>',
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件响应</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="flag=!flag">切换</button>
+        <p v-if="flag">我喜欢看足球</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                flag:true,
+            }
+           
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插槽</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <child>
+            <p>你好今天</p>
+        </child>
+        <hr>
+        <div class="title">标题<span>x</span></div>
+        <div class="content">弹出内容</div>
+        <div class="toot"><button>确定</button></div>
+        
+    </div>
+    <script>
+        var child = {
+            // 写上slot标签子组件里的html标签就能显示l
+            template:`
+            <div>
+            这是一个child组件
+            <slot></slot>
+            </div>`
+        }
+        new Vue({
+            el:'#box',
+            components:{
+                child,
+            }
+        })
+    </script>
+</body>
+</html>

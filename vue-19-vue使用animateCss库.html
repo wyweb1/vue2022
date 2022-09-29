@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用animate.css库</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <!-- 记得下载animate,css源文件！ -->
+</head>
+<body>
+    <div id="box">
+        <h1>vue动画</h1>
+        <p><button v-on:click="flog=!flog">点击切换</button></p>
+        <!-- vue自带的transtion动画标签 把需要动画的标签放在它里面 -->
+        <transition enter-active-class="animated wobble" leave-active-class="animated rubberBand">
+            <img v-if="flog" src="img/鱼.jpg" alt="" width="100">
+        </transition>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#box",
+            data:{
+                flog:true,
+            }
+        })
+    </script>
+</body>
+</html>

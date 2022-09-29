@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue动画</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .actDong-enter-active{
+            transition: all ease 1s;
+        }
+        .actDong-enter{
+            opacity: 0;
+        }
+        .actDong-enter-to{
+            opacity: 1;
+        }
+        .actDong-leave-active{
+            transition: all ease 1s;
+        }
+        .actDong-leave{
+            opacity: 1;
+        }
+        .actDong-leave-to{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h1>vue动画</h1>
+        <p><button v-on:click="flog=!flog">点击切换</button></p>
+        <!-- vue自带的transtion动画标签 把需要动画的标签放在它里面 -->
+        <transition name="actDong">
+            <img v-if="flog" src="img/鱼.jpg" alt="" width="100">
+        </transition>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#box",
+            data:{
+                flog:true,
+            }
+        })
+    </script>
+</body>
+</html>

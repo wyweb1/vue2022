@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>计算 computed</h1>
+        <!-- computed 作用从现有的数据计算出一个新的数据 -->
+    <p>{{msg}}</p>
+    <p>{{msg.split('').reverse().join('')}}</p>
+    <p>{{newMsg}}</p>
+</div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'我好中意你',
+            },
+            computed:{
+                // 好像不带双引号也行
+               
+                    // this 当前实例vue
+                    // this.msg 当前vue data里面的msg的数据
+                newMsg:function(){
+                    
+                    return this.msg.split('').reverse().join('');
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

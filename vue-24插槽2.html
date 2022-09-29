@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插槽2</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <child>
+            <p slot="content"></p>>玛莎拉蒂优惠券10000，限时三天</p>
+            <p slot="title">恭喜您中奖了</p>
+        </child>
+        <hr>
+        <child>
+            <p slot="title">成功</p>
+            <p slot="content">成功加入购物车</p>
+        </child>
+        
+    </div>
+    <script>
+        var child = {
+            // 写上slot标签子组件里的html标签就能显示l
+            template:`
+            <div>
+                <div class="title"><slot name="title"></slot><span>x</span></div>
+                <div class="content"><slot name="content"></slot></div>
+                <div class="toot"><button>确定</button></div>
+            </div>`
+        }
+        new Vue({
+            el:'#box',
+            components:{
+                child,
+            }
+        })
+    </script>
+</body>
+</html>

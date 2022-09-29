@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画组TODOlist清单</title>
+    <script src="js/vue.js"></script>
+    <style>
+        @keyframes slideEnter{
+            0%{
+                opacity: 0;
+                /* 加动画属性名！ */
+                transform: translate(-100%,0);
+            }
+            100%{
+                opacity: 1;
+                transform: translate(0,0);
+            }
+        }
+        
+        /* 定义离开动画 */
+        @keyframes slideOut{
+            0%{
+                opacity: 1;
+                transform: translate(0,0);
+            }
+            100%{
+                opacity: 0;
+                transform: translate(-100%,0);
+            }
+        }
+        /* 调用开始动画 */
+        .slide-enter-active{
+            animation:slideEnter ease 1s ;
+        }
+        /* 调用离开动画 */
+        .slide-leave-active{
+            animation: slideOut ease 1s;
+            position: absolute;
+
+        }
+        /* 正在移动的元素加动画 */
+        .slide-move{
+            transition: all ease 0.3s;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>清单</h1>
+            <input type="text" v-model="current" v-on:keyup.enter="addItem">
+        
+
+        <!-- tag 指定动画组里的某个html标签
+             name 自定义动画类名，在css里使用时记得加. -->
+        <!-- 使用动画组时不要用index作为key值！ -->
+        <transition-group name="slide" tag="div">
+            <div v-for="(item,index) in list" v-bind:key="item">
+                {{item}} 
+                <button v-on:click="deleteItem(index)">删除</button>
+            </div>
+        </transition-group>
+        
+
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                list:["x学前端","html","css","es6"],
+                current:'',
+            },
+            methods: {
+                deleteItem(index){
+                    this.list.splice(index,1);
+                    console.log(index,"jjj")
+                },
+                addItem(){
+                    this.list.unshift(this.current);
+                    this.current="";
+                }
+            },
+            // 监听简单数据变化
+            watch:{
+                list:{
+                    handler:function(nval,oval){
+                        localStorage.setItem("list2021",JSON.stringify(this.list));
+                    },
+                    deep:true
+                }
+            },
+            // 当vue加载成功时 从localStorage 取出数据并赋值给list
+            created(){
+                var str = localStorage.getItem("list2021");
+                this.list = JSON.parse(str);
+                // console.log(str,"str");
+                // console.log(this.list,"list")
+            },
+
+        })
+    </script>
+</body>
+</html>

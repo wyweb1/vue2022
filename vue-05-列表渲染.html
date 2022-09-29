@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <title>列表渲染</title>
+</head>
+<body>
+    <div id="app">
+        <h1>列表渲染</h1>
+        <p v-for='item in list'>{{item}}</p>
+
+        <h1>列表渲染-带序号</h1>
+        <p v-for="(item,index) in list">{{index+1}}---{{item}}</p>
+    
+        <h1>列表渲染-key 唯一id</h1>
+        <p v-for="(item,index) in list" v-bind:key="index">{{index+1}}--{{item}}</p>
+    
+        <h1>以ul方式遍历数组</h1>
+        <ul>
+            <li v-for="(item,index) in list2" v-bind:key="index">{{index+1}}--{{item}}</li>
+        </ul>
+
+        <h1>列表数据是对象</h1>
+        <p v-for="(item,index) in list3" v-bind:key="index+item">{{item.name}}</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                list:['学习','阅读','睡觉','赚钱','学习'],
+                list2:[
+                    'vue','react','angular','小程序'
+                ],
+                list3:[
+                    {name:'mm'},{name:'bnanner'},{name:'yearw'}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

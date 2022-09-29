@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- cn 中文
+    en 中文 -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json数据格式</title>
+</head>
+<body>
+ 
+    <script>
+        var obj={
+            name:'ww',
+            age:18,
+            sayHello(){
+                console.log('你好代码');
+            },
+            flog:true,
+            times:new Date(),
+            family:['mm','bb','me','s']
+        }
+
+        // 对象转字符串后对象的方法丢失
+        var str=JSON.stringify(obj);
+        console.log(str,'111')
+
+        // 字符串转成json
+        var str2='{"name":"ww","age":18}';
+        var obj2=JSON.parse(str2);
+        console.log(obj2,'转成json');
+    </script>
+</body>
+</html>

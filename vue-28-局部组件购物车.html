@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件购物车</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <cart v-for="(item,index) in goods" :good="item" :key="index"></cart>
+    </div>
+    
+    <script>
+        let cart = {
+            template:`
+                <div>
+                    <input type="checkbox" v-model="good.sel">
+                    <span>{{good.title}}</span>
+                    <button>-</button>
+                    <input type="text" v-model="good.num">
+                    <button>+</button>
+                    <span>{{good.price}}</span>|
+                    <span>{{good.price*good.num}}</span>|
+                    <button>删除</button>
+                </div>
+            `,
+            // props值的表现形式
+            props:["good"]
+        }
+
+        new Vue({
+            el:"#box",
+            data:{
+                goods:[
+                    {
+                    sel:true,
+                    title:"萝卜",
+                    num:2,
+                    max:199,
+                    min:1,
+                    price:2.5
+                },
+                {
+                    sel:false,
+                    title:"西红柿",
+                    num:1,
+                    max:100,
+                    min:1,
+                    price:3.0
+                },
+                {
+                    sel:true,
+                    title:"花菜",
+                    num:1,
+                    max:120,
+                    min:1,
+                    price:2.0
+                },
+            ]
+            },
+            components:{
+               cart,
+            }
+        })
+    </script>
+</body>
+</html>

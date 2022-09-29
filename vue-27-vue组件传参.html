@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件传参</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <h1>组件的参数</h1>
+        <p>1.通过属性传递</p>
+        <p>2.组件内部是通过props接受</p>
+        <p>3.props接受的参数一般建议只读，不建议修改</p>
+        <child :age="18"></child>
+        <!-- 单标签传参好像不允许多局部组件 -->
+        <!-- <child :age="16"/> --> 
+        <child :age="20"></child>
+    </div>
+
+    <script>
+        let child={
+            template:`<div>
+                <button v-on:click="num++">+</button>
+                我是一个局部组件-值是{{num}}
+                <p>{{age}}</p>
+                </div>`,
+                // props:["age"],
+                props:{
+                    age:{
+                        type:Number,//参数类型验证
+                        default:18 //默认值
+                    }
+                },
+            data(){
+                return {num:2}
+            },
+            
+        }
+        new Vue({
+            el:'#box',
+            components:{
+                child,
+            }
+        })
+    </script>
+</body>
+</html>

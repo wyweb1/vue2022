@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue全局组件</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <h1>vue 全局组件</h1>
+        <p>组件-把复杂的功能划分为简单的组件</p>
+        <p>组件可以复用</p>
+        <p>组件-自定义的可以扩展的html</p>
+        <p>全局组件在整个vue里面都能使用</p>
+
+        <my-con></my-con>
+        <my-con/>>
+    </div>
+    <!-- 全局组价不用再vue实例中的conponents里声明了！ -->
+    <script>
+        Vue.component("my-con",{
+            template:`<div><span>内容</span></div>`,
+        })
+        new Vue({
+            
+            el:"#box",
+            data:{},
+            // methods: {
+                
+            // },
+            // watch:{},
+            // components:{},
+            // // vue加载成功后
+            // created:{}
+        })
+    </script>
+</body>
+</html>

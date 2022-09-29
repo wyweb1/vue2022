@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的绑定</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .cR{
+            color: red;
+        }
+        .colorGr{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <!--1.不建议的绑定方法 -->
+        <h1  v-bind:class="colorRed">bind绑定属性</h1>
+
+        <!-- 2.常用属性绑定方式 -->
+        <h1 :class="{'colorGr':flog}" @click="flog=!flog">对象方式绑定</h1>
+    </div>
+    <script>
+        new Vue({
+            // 指定vue在html相应标签的有效的区域
+            el:'#box',
+            data:{
+                colorRed:'cR',
+                // colorGr:'coGreen',
+                flog:true,
+            },
+        })
+    </script>
+</body>
+</html>

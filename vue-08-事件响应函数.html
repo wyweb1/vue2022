@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件响应函数</title>
+    <script src="js/vue.js"></script>
+</head>
+    <div id="app">
+        <!--函数有参数就带（），没参数可以不带（） -->
+        <button v-on:click="great">按钮</button>
+        <button v-on:click="say('天天向上')">按我的说</button>
+        <!-- 事件修饰符 once -->
+        <button v-on:click.once="great">真爱就一次</button>
+        <button @click.once="great">真爱就是一次事件函数简写</button>
+        <!-- 按键修饰符 vue官方文档-事件处理-按键修饰符 -->
+        <input type="text" v-on:keyup.enter="keything">
+    </div>
+    <script>
+        
+        new Vue({
+            el:'#app',
+            // 放数据
+            data:{
+                msg:'',
+            },
+            // 放方法 methods 不要写错
+            methods:{
+                //标准写法
+                great:function(x,y){
+                    console.log("我是标准写法");
+                },
+                // 函数方法简写
+                great(){
+                 alert("你好我是善良的vue");  
+                },
+               
+                say(msg){
+                    alert(msg);
+                },
+                keything(){
+                    alert("keyup事件");
+                }
+            },
+        })
+    </script>
+<body>
+    
+</body>
+</html>

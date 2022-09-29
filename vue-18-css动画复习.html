@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css关键帧动画</title>
+    <script src="js/vue.js"></script>
+    <style>
+        /* 定义关键帧动画进入 */
+    @keyframes fadeIn{
+        from{
+            opacity: 0;
+            transform: scale(0.1);
+        }
+        to{
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    /* 定义关键帧 出 */
+    @keyframes fadeOut{
+        0%{
+            opacity:1;
+            transform: scale(1);
+        }
+        100%{
+            opacity: 0.1;
+            transform:scale(0.1);
+        }
+    }
+    
+    .actDong-enter-active{
+        /* 调用动画 */
+        animation: fadeIn ease 1s;
+    }
+    .actDong-leave-active{
+        animation: fadeOut ease 1s;
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h1>vue动画</h1>
+        <p><button v-on:click="flog=!flog">点击切换</button></p>
+        <!-- vue自带的transtion动画标签 把需要动画的标签放在它里面 -->
+        <transition name="actDong">
+            <img v-if="flog" src="img/鱼.jpg" alt="" width="100">
+        </transition>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#box",
+            data:{
+                flog:true,
+            }
+        })
+    </script>
+</body>
+</html>
