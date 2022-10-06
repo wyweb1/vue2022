@@ -4,16 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>flightBook</title>
+    <title>markdown</title>
     <script src="../js/vue.js"></script> 
 
 </head>
 <style>
-
-</style>
+    body {
+      margin: 0;
+    }
+    #box{
+        width: 100vw;
+        height: 100vh;
+    }
+    .editor {
+      height: 100vh;
+      display: flex;
+    }
+    
+    .input,
+    .output {
+      overflow: auto;
+      width: 50%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0 20px;
+    }
+    
+    .input {
+      border: none;
+      border-right: 1px solid #ccc;
+      resize: none;
+      outline: none;
+      background-color: #f6f6f6;
+      font-size: 14px;
+      font-family: 'Monaco', courier, monospace;
+      padding: 20px;
+    }
+    
+    code {
+      color: #f66;
+    }
+    </style>
 <body>
 <!-- 单文件组件：简单的富文本工具 -->
-
+    <div id="box">
+        <div class="editor">
+            <textarea class="input" :value="input" @input="update"></textarea>
+            <div class="output" v-html="output"></div>
+        </div>
+    </div>
 </body>
+<script src="https://cdn.bootcdn.net/ajax/libs/marked/4.1.1/marked.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+<script>
+    // import {marked} from 'marked';
+    // import {debounce} from 'lodash-es';
+    console.log(_.chunk(['a', 'b', 'c', 'd'])) //直接使用lodash里的方法
+    var rendererMD = new marked.Renderer();
+    marked.setOptions({
+      renderer: rendererMD,
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false
+    });//基本设置
+    new Vue({
+        el:'#box',
+        data:{
+            input:'# hello vue',
 
+        },
+        computed:{
+            output(){
+                return marked(this.input);
+            }
+        },
+        methods: {
+            update:_.debounce(function(e){//???
+                this.input=e.target.value
+            },100)
+        },
+    })
+</script>
 </html>
