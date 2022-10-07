@@ -54,27 +54,23 @@
         </div>
     </div>
 </body>
-<script src="https://cdn.bootcdn.net/ajax/libs/marked/4.1.1/marked.min.js"></script>
+
+<!-- 引入loadsh -->
 <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+<!-- 引入marked.js -->
+<script src="https://cdn.bootcss.com/marked/0.8.1/marked.min.js"></script>
+
 <script>
     // import {marked} from 'marked';
     // import {debounce} from 'lodash-es';
     console.log(_.chunk(['a', 'b', 'c', 'd'])) //直接使用lodash里的方法
-    var rendererMD = new marked.Renderer();
-    marked.setOptions({
-      renderer: rendererMD,
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false
-    });//基本设置
+
+
     new Vue({
         el:'#box',
         data:{
-            input:'# hello vue',
+            input:'# hello vue&marked',
 
         },
         computed:{
